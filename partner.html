@@ -1,0 +1,204 @@
+<html>
+    <head>
+        <title>day 1</title>
+        <link rel="stylesheet" type="text/css" href="css/day1.css" />
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Partner registration</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' type='text/css' media='screen' href='css/bootstrap.min.css'>
+        <script src='js/jquerycdn.js'></script>
+        <script src='js/jquery.min.js'></script>
+        <script src='js/popper.min.js'></script>
+        <script src='js/bootstrap.min.js'></script>
+    </head>
+    <body class="bg-ready">
+
+        <div class="container" id="container" >
+            <div class="form-container sign-up-container">
+                <form action="" onsubmit="return validationup()" name="signupform" >
+                    <h1>PartnerSignUp</h1>
+                    <hr class="w-auto">
+                         <select id="container" name="select">
+                           <option value="select">Select The Background</option>
+                         <option value="Firestation">Firestation</option>    
+                         <option value="Policestation">Policestation</option>
+                         <option value="Hospital">Hospital</option>    
+                         <option value="Others">Others</option>     
+                        </select>
+                          <hr class="w-auto">
+                         <input type="email" id="email1" name="email"placeholder="Email" required />
+                         <input type="password"id="password1"name="password1" placeholder="Password" required/>
+                         <input type="password" id="repassword2"name = "repassword2"placeholder="re-enter Password" required/>
+                         <input type="text" id="address"name="address" placeholder="Address" required/>
+                         <input type="number" id="zip"name="zip" placeholder="Zip code" required/>
+                         <hr class="w-auto">
+                         <input type="checkbox" name="check" required>
+                         
+                           Agree to terms and conditions
+                           <p style="font-size: small;">1.All the entries should be correct.
+                                 <br> 2.All the fields are mandatory.</p> 
+                       
+                         <button id="signupform">Sign up</button>                  
+                </form>
+            </div>
+            <script>
+            
+            </script>
+        <div class=" form-container sign-in-container">
+            <form action="404.html" onsubmit="return validation()" name="RegForm">
+                <h1>Sign in</h1>
+              
+                        <span>or use your Account</span>
+                      
+                        <input type="email" name="email" placeholder="Email" />
+                        <input type="password"name="password" placeholder="Password" />
+                        <input type="checkbox"> Remember me
+                        <a href="#">Forget your password</a>
+                        <button>Sign in</button>
+
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>hey! please login with your information to connect</p>
+                    <button class="ghost" id="signin">Sign in</button>
+                </div>
+                <div class = "overlay-panel overlay-right">
+                <h1>Hello !</h1>
+                <hr width="125">
+                <button class = "ghost" id="signup">Sign up</button>
+                
+                </div>
+            </div>
+        </div>
+        <script>
+         function validation(){
+            var email = document.forms["RegForm"]["email"];    
+            var password = document.forms["RegForm"]["password"];    
+            
+            if(email.value=="")
+            {
+                window.alert("enter valid Email");
+                email.focus();
+                return false;
+            }
+            if(password.value=="")
+            {
+                window.alert("enter valid password");
+                password.focus();
+                return false;
+            }
+            return true;
+         }        
+        
+        </script>
+        <script>
+        function validationup(){
+            var email=document.forms["signupform"]["email1"];
+            var password=document.forms["signupform"]["password1"];
+            var password2=document.forms["signupform"]["repassword2"];
+            var address=document.forms["signupform"]["address"];
+            var zip=document.forms["signupform"]["zip"];
+            var select=document.forms["signupform"]["select"];
+             
+             
+            if(email.value=="")
+            {
+               alert("Enter Email");
+                email.focus();
+               email.style.borderColor = "red"; 
+                return false;
+            }
+            if(password.value=="")
+            {
+               alert("Enter Password");
+                password.focus();
+                return false;
+            }
+            if(password2.value=="")
+            {
+                window.alert("Re-enter password");
+                password2.focus();
+                return false;
+            }
+           
+            if(password.value!=password2.value)
+            {
+                window.alert("Password Mismatched!!Retype again");
+                password2.focus;
+                return false;
+            }
+            if(address.value=="")
+            {
+                window.alert("enter address");
+                address.focus();
+                return false;
+            }
+            if(zip.value==""||zip.value.length!=6)
+            {
+                window.alert("enter correct Zip");
+                zip.focus();
+                return false;
+            }
+            if(select.value=="select")
+            {
+                window.alert("Select the background");
+                select.focus();
+                return false;
+            }
+
+           
+        }
+       
+        let datas = [];
+
+        const addData = (ev) =>{
+            ev.preventDefault;
+
+            let data = {
+               
+               id:Date.now(),
+               email:document.getElementById('email1').value,
+               password:document.getElementById('password1').value,
+               address:document.getElementById('address').value,
+               zip:document.getElementById('zip').value,
+               type:document.getElementsByName('select').value
+
+
+            }
+            datas.push(data);
+            document.forms[0].reset();
+
+            // to show on the screen
+
+            console.warn('added' , datas);
+           
+        }
+        
+        document.addEventListener('DOMContentLoaded', ()=>{
+               document.getElementById('signupform').addEventListener('click',addData);
+        
+       
+        });
+        
+        </script>
+        </div>
+    </body>
+
+    <script>
+        const signup = document.getElementById("signup");
+        const signin = document.getElementById("signin");
+        const container = document.getElementById("container");
+
+        signup.addEventListener('click',() => {
+            container.classList.add("right-panel-active");
+
+        });
+        signin.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        } );
+    </script>
+</html>
